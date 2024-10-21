@@ -1,0 +1,92 @@
+spring:
+  application:
+    name: t1-java-demo
+  datasource:
+    jdbcUrl: jdbc:h2://${DB_HOST:localhost:5432}/t1_demo
+    username: postgres
+    password: "0000"
+    driverClassName: org.h2.Driver
+  liquibase:
+    enabled: false
+    default-schema: t1_demo
+    change-log: db/changelog/db.changelog-master.xml
+    driver-class-name: org.h2.Driver
+    driverClassName: org.h2.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost:5432}/t1_demo
+    user: postgres
+    password: "0000"
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+security:
+  token: tstrs4g434wyhser5htstrs4g434wyhser5htstrs4g434wyhser5htstrs4g434wyhser5htstrs4g434wyhser5h
+  expiration: 86400000
+
+management:
+  metrics:
+    tags:
+      appName: @project.build.finalName@
+      application: @project.name@
+      appVersion: @project.version@
+  endpoints:
+    enabled-by-default: true
+    web.exposure.include: health,prometheus,metrics,info,kafka
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+      probes:
+        group:
+          readiness:
+            include: db
+    shutdown.enabled: true
+    restart.enabled: true
+    prometheus.enabled: true
+    logfile.enabled: true
+
+logging:
+  level:
+    ROOT: DEBUG
+    ru.t1.java.demo.controller.ClientController: DEBUG
+    org.apache.kafka: INFO
+    org.hibernate.SQL: INFO
+
+t1:
+  scan-path: ru.t1.java.demo
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    consumer:
+      group-id: t1-demo
+      max.poll.records: 10
+    producer:
+      enable: true
+    topic:
+      client_registration: t1_demo_client_registration
+      client_id_registered: t1_demo_client_registered
+      client_transactions: t1_demo_client_transactions
+    listener:
+      poll-timeout: 1000
+
+
+track:
+  errors-to-track: JsonParseException, IOException
+  kafka:
+    enabled: ${TRACK_KAFKA_LOG_ENABLED:true}
+    bootstrap-server: localhost:9092
+    data-source-error-topic: t1_demo_data_source_error
+    time-limit-exceed: t1_demo_time_limit_exceed
+  db:
+    enabled: false
+  time-limit-exceed: 1000
+
+integration:
+  url: http://localhost:8088
+  resource: /bsc-wire-mock/api/client/check
+  retry-count: 3
+  retry-backoff: 1000
