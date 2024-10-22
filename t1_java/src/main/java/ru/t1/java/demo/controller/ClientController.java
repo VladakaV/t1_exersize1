@@ -62,6 +62,7 @@ public class ClientController {
         return ResponseEntity.ok().body(client);
     }
 
+
     @PostMapping("/admin")
     @TrackExecutionTime
     public void oneSecond() {
@@ -74,4 +75,6 @@ public class ClientController {
         }
 
     }
+
+
 }
