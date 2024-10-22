@@ -82,4 +82,8 @@ public class ClientServiceImpl implements ClientService {
         dtos.forEach(dto -> dto.setMiddleName(null));
         log.info("Done clearing middle name");
     }
+
+    public Client getClientById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 }

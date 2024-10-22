@@ -13,11 +13,11 @@ import java.util.UUID;
 @Component
 public class KafkaClientProducer<T extends ClientDto> {
 
-    private final KafkaTemplate template;
+    private final KafkaTemplate<String, ClientDto> template;
 
     public void send(Long clientId) {
         try {
-            template.sendDefault(UUID.randomUUID().toString(), clientId).get();
+            template.sendDefault(UUID.randomUUID().toString(), new ClientDto("random", "random", "random")).get();
         } catch (Exception ex) {
             log.error(ex.getMessage(), ex);
         } finally {
@@ -25,7 +25,7 @@ public class KafkaClientProducer<T extends ClientDto> {
         }
     }
 
-    public void sendTo(String topic, Object o) {
+    public void sendTo(String topic, ClientDto o) {
         try {
             template.send(topic, o).get();
         } catch (Exception ex) {

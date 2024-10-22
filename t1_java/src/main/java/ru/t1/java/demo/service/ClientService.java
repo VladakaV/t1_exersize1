@@ -13,4 +13,6 @@ public interface ClientService {
     List<ClientDto> parseJson();
 
     void clearMiddleName(List<ClientDto> dtos);
+
+    public Client getClientById(Long id);
 }
