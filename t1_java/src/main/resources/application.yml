@@ -85,5 +85,5 @@ track:
 integration:
   url: http://localhost:8088
   resource: /bsc-wire-mock/api/client/check
-  retry-count: 3
+  retry-count: 1
   retry-backoff: 1000

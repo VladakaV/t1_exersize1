@@ -3,7 +3,9 @@ package ru.t1.java.demo.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.kafka.common.utils.OperatingSystem;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import ru.t1.java.demo.model.enums.OperationEnum;
 
 import java.math.BigDecimal;
 
@@ -23,11 +25,14 @@ public class Transaction {
 //    @ManyToOne
 //    @JoinColumn(name = "client_id", referencedColumnName = "id")
     @Column(name = "cliend_id")
-    private Long client_id;
+    private Long clientId;
 
 //    @ManyToOne
 //    @JoinColumn(name = "account_id", referencedColumnName = "id")
     @Column(name = "account_id")
-    private Long account_id;
+    private Long accountId;
+
+    @Column(name = "type")
+    private OperationEnum type;
 
 }

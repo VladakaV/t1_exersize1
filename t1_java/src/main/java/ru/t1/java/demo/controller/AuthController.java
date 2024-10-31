@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import ru.t1.java.demo.model.Client;
 import ru.t1.java.demo.model.Role;
 import ru.t1.java.demo.model.RoleEnum;
 import ru.t1.java.demo.model.User;
@@ -17,6 +18,7 @@ import ru.t1.java.demo.model.dto.JwtResponse;
 import ru.t1.java.demo.model.dto.LoginRequest;
 import ru.t1.java.demo.model.dto.MessageResponse;
 import ru.t1.java.demo.model.dto.SignupRequest;
+import ru.t1.java.demo.repository.ClientRepository;
 import ru.t1.java.demo.repository.RoleRepository;
 import ru.t1.java.demo.repository.UserRepository;
 import ru.t1.java.demo.service.impl.UserDetailsImpl;
@@ -35,6 +37,8 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     private final UserRepository userRepository;
+
+    private final ClientRepository clientRepository;
 
     private final RoleRepository roleRepository;
 
@@ -112,7 +116,18 @@ public class AuthController {
             });
         }
 
+
+        Client client = new Client();
+
+        client.setFirstName(signUpRequest.getFirstName());
+        client.setLastName(signUpRequest.getLastName());
+        client.setMiddleName(signUpRequest.getMiddleName());
+
+        clientRepository.save(client);
+
         user.setRoles(roles);
+        user.setClient(client);
+
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

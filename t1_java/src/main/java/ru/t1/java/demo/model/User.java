@@ -43,6 +43,12 @@ public class User extends AbstractPersistable<Long> {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @OneToOne
+    @JoinTable(name = "user_client",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"))
+    private Client client; //было добавлено
+
     public User(String login, String email, String password) {
         this.login = login;
         this.email = email;

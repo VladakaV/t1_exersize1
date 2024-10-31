@@ -9,9 +9,9 @@ public class TransactionMapperImplem {
     public Transaction toEntity(TransactionDto transactionDto) {
         Transaction transaction = new Transaction();
 
-        transaction.setClient_id(transactionDto.getClientId());
+        transaction.setClientId(transactionDto.getClientId());
         transaction.setAmount(transactionDto.getAmount());
-        transaction.setAccount_id(transactionDto.getAccount_id());
+        transaction.setAccountId(transactionDto.getAccount_id());
 
         return transaction;
     }

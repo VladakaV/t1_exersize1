@@ -11,7 +11,7 @@ public class AccountMapperImplem {
     public Account toEntity(AccountDto accountDto) {
         Account account = new Account();
 
-        account.setClient_id(accountDto.getClientId());
+        account.setClientId(accountDto.getClientId());
         account.setBalance(accountDto.getBalance());
 
         switch (accountDto.getType()) {

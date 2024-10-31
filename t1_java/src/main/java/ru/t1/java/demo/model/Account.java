@@ -22,7 +22,7 @@ public class Account {
 //   @ManyToOne
 //   @JoinColumn(name = "client_id", referencedColumnName = "id")
    @Column(name = "client_id")
-   private Long client_id;
+   private Long clientId;
 
    @Column(name = "type")
    private TypeEnum type;

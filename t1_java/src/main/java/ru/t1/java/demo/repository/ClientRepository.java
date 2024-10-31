@@ -14,7 +14,7 @@ import static org.springframework.transaction.annotation.Propagation.NOT_SUPPORT
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
     @Override
-    Optional<Client> findById(Long aLong);
+    Optional<Client> findById(Long id);
 
     @Transactional(propagation = NOT_SUPPORTED)
     @Transaction

@@ -88,6 +88,8 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter { // Sp
                                 auth.requestMatchers("/api/auth/**").anonymous()
                                         .requestMatchers("/parse/**").permitAll()
                                         .requestMatchers("/parse").permitAll()
+                                        .requestMatchers("/api/kafka/**").authenticated()
+                                        .requestMatchers("/kafka/**").authenticated()
                                         .requestMatchers("/actuator/prometheus").anonymous()
                                         .requestMatchers("/actuator/*").anonymous()
                                         .anyRequest().permitAll()
