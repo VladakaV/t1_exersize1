@@ -51,4 +51,11 @@ public class AccountServiceImpl implements AccountService {
             return true;
         }
     }
+
+    @Override
+    public Optional<Account> findById(int id) {
+        return accountRepository.findById(id);
+    }
+
+
 }

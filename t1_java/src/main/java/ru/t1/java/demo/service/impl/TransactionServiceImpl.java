@@ -9,6 +9,7 @@ import ru.t1.java.demo.repository.TransactionRepository;
 import ru.t1.java.demo.service.TransactionService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -22,4 +23,10 @@ public class TransactionServiceImpl implements TransactionService {
     public void saveTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
     }
+
+    @Override
+    public Optional<Transaction> findById(Long id) {
+        return transactionRepository.findById(id);
+    }
+
 }

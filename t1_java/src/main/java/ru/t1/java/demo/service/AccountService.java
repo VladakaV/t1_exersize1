@@ -14,4 +14,5 @@ public interface AccountService {
 
     public boolean createAccount(CreationAccountDto creationAccountDto);
 
+    public Optional<Account> findById(int id);
 }
