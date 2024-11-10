@@ -26,6 +26,4 @@ public interface IsBlockedRepository  extends JpaRepository<IsBlocked, Long> {
     @Query(value = "UPDATE IsBlocked SET isBlocked = true WHERE accountId = :accountId")
     public void setBlocked(Long accountId);
 
-
-
 }

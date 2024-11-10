@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.reactive.function.client.WebClient;
 import ru.t1.java.demo.service.impl.UserDetailsServiceImpl;
 import ru.t1.java.demo.util.AuthEntryPointJwt;
 import ru.t1.java.demo.util.AuthTokenFilter;
@@ -26,6 +27,11 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter { // Sp
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtUtils jwtUtils;
     private final AuthEntryPointJwt unauthorizedHandler;
+
+    @Bean
+    public WebClient webClient(WebClient.Builder builder) {
+        return builder.build();
+    }
 
     // Spring Boot 2
 
